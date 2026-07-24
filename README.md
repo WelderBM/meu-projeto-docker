@@ -42,7 +42,7 @@ docker compose up -d --build
 
 **Usuário de execução:** node (não-root)
 
-**Tamanho final da imagem:** TODO — rode `docker images todo-app:v1` e cole o valor da coluna SIZE aqui (é uma evidência medida, não posso preencher por você)
+**Tamanho final da imagem:** 67.9MB
 
 **Por que o multi-stage ajuda?** 
 
@@ -184,7 +184,7 @@ Na hora de "Esperar a aplicação responder" em actions deu bug, falhando no ste
 
 ## 8. Dificuldades e aprendizados
 
-TODO (escreva com suas palavras, 3-5 linhas): o que travou, como resolveu, o que ficou mais claro sobre containers depois da atividade. Alguns pontos reais que aconteceram e podem servir de base: o bug proposital no `CMD` do Dockerfile (`indexx.js`) que derrubou o smoke test do CI; e o ajuste do `healthcheck` + `depends_on: condition: service_healthy` para o `app` não subir antes do banco estar pronto.
+Foi bacana o fluxo, pude ter uma noção maior de Devops, do início ao fim. com certeza irei aplicar esses conhecimentos daqui pra frente.
 
 ---
 
