@@ -30,7 +30,9 @@ Dockerfile com dois estágios: `builder` (instala apenas dependências de produ�
 `docker volume ls`:
 
 ```
-TODO: colar saída aqui
+DRIVER    VOLUME NAME
+local     f20f0604d8e9a224c5d574694a50d4c6e0b8b892cf3bf46ebb67e3f62c9f4c46
+local     todo-db
 ```
 
 ## Parte 3 — Rede
