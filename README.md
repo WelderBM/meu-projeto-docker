@@ -1,4 +1,4 @@
-# Atividade Docker + CI — [SEU NOME]
+# Atividade Docker + CI — Welder Barroso de Melo
 
 > Preencha todos os campos marcados com `[...]` e substitua os prints de exemplo pelos seus. Salve as imagens em `docs/imagens/` e mantenha os nomes de arquivo indicados.
 
@@ -38,11 +38,11 @@ docker compose up -d --build
 
 **Estágios utilizados:** builder (instala dependências) e estágio final (runtime enxuto)
 
-**Imagem base:** [ex.: node:20-alpine]
+**Imagem base:** node:20-alpine (nos dois estágios)
 
 **Usuário de execução:** node (não-root)
 
-**Tamanho final da imagem:** [ex.: 180MB]
+**Tamanho final da imagem:** TODO — rode `docker images todo-app:v1` e cole o valor da coluna SIZE aqui (é uma evidência medida, não posso preencher por você)
 
 **Por que o multi-stage ajuda?** 
 
@@ -60,7 +60,7 @@ Dockerfile com dois estágios: `builder` (instala apenas dependências de produ�
 
 ## 3. Volumes e persistência
 
-**Volume usado:** [nome] → montado em [caminho dentro do container]
+**Volume usado:** `todo-db` → montado em `/etc/todos` (onde o SQLite grava `todo.db`)
 
 ### Print 3 — SEM volume: dados perdidos ao recriar o container
 
@@ -86,11 +86,11 @@ O primeiro remove containers e rede mas mantém os volumes nomeados (dados prese
 
 ## 4. Rede
 
-**Rede criada:** [nome]
+**Rede criada:** `todo-net`
 
 **Serviços conectados:** app e db
 
-**A porta do banco está exposta ao host?** Não — [justifique em 1 frase]
+**A porta do banco está exposta ao host?** Não — o serviço `db` não tem `ports:` mapeada no compose, só está acessível dentro da rede `todo-net`, que é onde o `app` o alcança pelo nome do serviço.
 
 **Por que o app consegue chamar o host `mysql` / `db` sem saber o IP?**
 
@@ -114,9 +114,9 @@ Containers na mesma rede definida pelo usuário usam o DNS interno do Docker, qu
 
 **Serviços:** app, db
 
-**Rede:** [nome]
+**Rede:** `todo-net`
 
-**Volume:** [nome]
+**Volume:** `todo-mysql-data` (dados do MySQL em `/var/lib/mysql`)
 
 **Healthcheck em:** db
 
@@ -144,11 +144,11 @@ Containers na mesma rede definida pelo usuário usam o DNS interno do Docker, qu
 
 **O que o pipeline faz:**
 
-1. [valida o compose]
-2. [builda a imagem]
-3. [sobe a stack]
-4. [aguarda a app responder e testa criar uma tarefa via API]
-5. [derruba a stack]
+1. Valida o `compose.yaml` (`docker compose config`)
+2. Builda a imagem do serviço `app`
+3. Sobe a stack (`docker compose up -d`)
+4. Aguarda a aplicação responder e roda o smoke test do CRUD via API
+5. Derruba a stack (`docker compose down -v`)
 
 ### Print 8 — execução verde ✅
 
@@ -168,9 +168,9 @@ Error: Cannot find module '/app/src/indexx.js'
 
 Na hora de "Esperar a aplicação responder" em actions deu bug, falhando no step de validação da aplicação.
 
-**Como eu corrigi:** [o que foi alterado]
+**Como eu corrigi:** Corrigido o caminho do arquivo no `CMD` do Dockerfile, voltando de `src/indexx.js` para `src/index.js`.
 
-**Link do Pull Request:** [URL]
+**Link do Pull Request:** https://github.com/WelderBM/meu-projeto-docker/pull/1
 
 ### Print 9 — execução vermelha ❌ + log do erro
 
@@ -184,7 +184,7 @@ Na hora de "Esperar a aplicação responder" em actions deu bug, falhando no ste
 
 ## 8. Dificuldades e aprendizados
 
-[3 a 5 linhas: o que travou, como resolveu, o que ficou mais claro sobre containers depois da atividade]
+TODO (escreva com suas palavras, 3-5 linhas): o que travou, como resolveu, o que ficou mais claro sobre containers depois da atividade. Alguns pontos reais que aconteceram e podem servir de base: o bug proposital no `CMD` do Dockerfile (`indexx.js`) que derrubou o smoke test do CI; e o ajuste do `healthcheck` + `depends_on: condition: service_healthy` para o `app` não subir antes do banco estar pronto.
 
 ---
 
@@ -195,7 +195,7 @@ Na hora de "Esperar a aplicação responder" em actions deu bug, falhando no ste
 - [x] Container não roda como root
 - [x] Volume nomeado + persistência demonstrada
 - [x] Rede nomeada + banco não exposto ao host
-- [x] `compose.yaml` sobe tudo com um comando
+- [x] `docker-compose.yaml` sobe tudo com um comando
 - [x] `.env` no `.gitignore` e `.env.example` versionado
 - [x] CI verde
 - [x] PR com CI vermelho documentado
