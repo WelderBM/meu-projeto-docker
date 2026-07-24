@@ -2,9 +2,9 @@
 
 > Preencha todos os campos marcados com `[...]` e substitua os prints de exemplo pelos seus. Salve as imagens em `docs/imagens/` e mantenha os nomes de arquivo indicados.
 
-**Aluno(a):** [nome completo]  
-**Turma:** [turma]  
-**Data:** [data]  
+**Aluno(a):** Welder Barroso de Melo  
+**Turma:** Vespertino  
+**Data:** 24/07/2026 
 **Aplicação usada:** docker/getting-started-app — To-Do em Node.js
 
 **Sobre o app:**
@@ -20,8 +20,8 @@
 ## 1. Como executar este projeto
 
 ```bash
-git clone [URL do seu repositório]
-cd [pasta]
+git clone https://github.com/WelderBM/meu-projeto-docker
+cd meu-projeto-docker
 cp .env.example .env
 docker compose up -d --build
 ```
