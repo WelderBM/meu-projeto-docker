@@ -65,11 +65,11 @@ Teste de persistência:
 
 ## Parte 6 — Quebra proposital do CI
 
-**O que foi quebrado:** TODO
+**O que foi quebrado:** colocado caminho errado do index
 
-**Como o CI reagiu:** TODO
+**Como o CI reagiu/Como descobri pelos logs:** na hora de "Esperar a aplicação responder" em actions deu bug. Error: Cannot find module '/app/src/indexx.js'
 
-**Como descobri pelos logs:** TODO
+
 
 ![Execução vermelha do GitHub Actions](docs/imagens/11-ci-vermelho.png)
 
