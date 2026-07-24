@@ -26,4 +26,4 @@ EXPOSE 3000
 USER node
 
 # Comando de inicialização oficial
-CMD ["node", "src/indexx.js"]
+CMD ["node", "src/index.js"]
